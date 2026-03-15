@@ -67,7 +67,7 @@ jobs:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v4
 
-    # 3. Terraform Init with Dynamic State Key
+    # 3. Terraform Init
     - name: Terraform Init
       run: terraform init
       working-directory: ./terraform
