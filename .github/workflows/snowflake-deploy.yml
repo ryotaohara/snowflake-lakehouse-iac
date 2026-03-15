@@ -1,4 +1,4 @@
-name: Snowflake Deployment with Workload Identity
+name: Snowflake Deployment with Workload Identity Federation
 
 on:
   push:
