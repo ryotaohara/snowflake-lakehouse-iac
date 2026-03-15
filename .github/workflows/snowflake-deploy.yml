@@ -82,6 +82,7 @@ jobs:
         TF_VAR_SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
         TF_VAR_SNOWFLAKE_AUTHENTICATOR: ${{ secrets.SNOWFLAKE_AUTHENTICATOR }}
         TF_VAR_SNOWFLAKE_TOKEN: ${{ secrets.SNOWFLAKE_TOKEN }}
+        TF_VAR_SNOWFLAKE_WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.SNOWFLAKE_WORKLOAD_IDENTITY_PROVIDER }}
         TF_VAR_ENV_NAME: ${{ env.ENV_NAME }}
       run: terraform apply -auto-approve
       working-directory: ./terraform

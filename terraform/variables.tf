@@ -45,3 +45,9 @@ variable "SNOWFLAKE_TOKEN" {
   type        = string
   sensitive   = true
 }
+
+variable "SNOWFLAKE_WORKLOAD_IDENTITY_PROVIDER" {
+  description = "Snowflake authenactor method"
+  type        = string
+  sensitive   = true
+}
