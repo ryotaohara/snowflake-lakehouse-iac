@@ -18,7 +18,6 @@ jobs:
       SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
       SNOWFLAKE_AUTHENTICATOR: WORKLOAD_IDENTITY
       SNOWFLAKE_WORKLOAD_IDENTITY_PROVIDER: OIDC
-      SNOWFLAKE_TOKEN: ${{ steps.get-token.outputs.id_token }}
       SF_ENABLE_EXPERIMENTAL_AUTHENTICATION: true
     
     steps:
