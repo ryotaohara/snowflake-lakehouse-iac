@@ -24,6 +24,22 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v5
 
+    - name: Get OIDC Token
+      id: id-token
+      uses: actions/github-script@v7
+      env:
+        AUDIENCE: snowflakecomputing.com
+      with:
+        script: |
+          try {
+            const idToken = await core.getIDToken(process.env.AUDIENCE);
+            core.exportVariable('SNOWFLAKE_OIDC_TOKEN', idToken);
+            console.log('ID token obtained');
+          } catch (error) {
+            console.error(error);
+            core.setFailed(`ID token retrieval failed: ${error.message}`);
+          }
+
     # 0. Test Snowflake connection
     - name: Set up Snowflake CLI
       uses: snowflakedb/snowflake-cli-action@v2.0
@@ -58,7 +74,8 @@ jobs:
       run: terraform apply -var="ENV_NAME=${{ env.ENV_NAME }}" -auto-approve
       working-directory: ./terraform
       env:
-        SNOWFLAKE_AUTHENTICATOR: 'OIDC'
+        SNOWFLAKE_OIDC_TOKEN: ${{ steps.id-token.outputs.id_token }}
+        # SNOWFLAKE_AUTHENTICATOR: 'OIDC'
 
     # 5. Setup Python for dbt
     - name: Set up Python
