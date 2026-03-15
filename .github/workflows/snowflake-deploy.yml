@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   deploy:
-    name: "Deploy to ${{ env.ENV_NAME }}"
+    name: "Deploy to ${{ github.ref_name }}"
     runs-on: ubuntu-latest
 
     env:
