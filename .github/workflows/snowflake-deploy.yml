@@ -70,8 +70,12 @@ jobs:
       run: terraform init
       working-directory: ./terraform
     
-    # 4. Terraform Apply using OIDC
+    # 4. Terraform Apply — pass GitHub Secrets into Terraform via TF_VAR_
     - name: Terraform Apply
+      env:
+        TF_VAR_SNOWFLAKE_ORGANIZATION: ${{ secrets.SNOWFLAKE_ORGANIZATION }}
+        TF_VAR_SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+        TF_VAR_SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
       run: terraform apply -var="ENV_NAME=${{ env.ENV_NAME }}" -auto-approve
       working-directory: ./terraform
 
