@@ -80,6 +80,7 @@ jobs:
         TF_VAR_SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
         TF_VAR_SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
         TF_VAR_SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
+        TF_VAR_SNOWFLAKE_AUTHENTICATOR: ${{ secrets.SNOWFLAKE_AUTHENTICATOR }}
         TF_VAR_ENV_NAME: ${{ env.ENV_NAME }}
       run: terraform apply -auto-approve
       working-directory: ./terraform

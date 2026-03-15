@@ -14,6 +14,7 @@ provider "snowflake" {
   user              = var.SNOWFLAKE_USER
   role              = var.SNOWFLAKE_ROLE
   warehouse         = var.SNOWFLAKE_WAREHOUSE
+  authenticator     = var.SNOWFLAKE_AUTHENTICATOR
 }
 
 # Test database for Terraform
