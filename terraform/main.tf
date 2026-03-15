@@ -9,9 +9,9 @@ terraform {
 
 # Credentials come from the environment (e.g. GitHub Secrets via workflow env)
 provider "snowflake" {
-  organization_name = env("SNOWFLAKE_ORGANIZATION")
-  account_name      = env("SNOWFLAKE_ACCOUNT")
-  user              = env("SNOWFLAKE_USER")
+  organization_name = var.SNOWFLAKE_ORGANIZATION
+  account_name      = var.SNOWFLAKE_ACCOUNT
+  user              = var.SNOWFLAKE_USER
 }
 
 # Test database for Terraform

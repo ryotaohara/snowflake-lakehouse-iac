@@ -70,9 +70,14 @@ jobs:
       run: terraform init
       working-directory: ./terraform
     
-    # 4. Terraform Apply (Snowflake creds from job env, set from GitHub Secrets above)
+    # 4. Terraform Apply — pass GitHub Secrets into Terraform via TF_VAR_
     - name: Terraform Apply
-      run: terraform apply -var="ENV_NAME=${{ env.ENV_NAME }}" -auto-approve
+      env:
+        TF_VAR_SNOWFLAKE_ORGANIZATION: ${{ secrets.SNOWFLAKE_ORGANIZATION }}
+        TF_VAR_SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+        TF_VAR_SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
+        TF_VAR_ENV_NAME: ${{ env.ENV_NAME }}
+      run: terraform apply -auto-approve
       working-directory: ./terraform
 
     # 5. Setup Python for dbt
