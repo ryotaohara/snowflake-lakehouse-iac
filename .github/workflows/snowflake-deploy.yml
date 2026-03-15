@@ -5,8 +5,8 @@ on:
     branches: [ main, test, dev ]
 
 permissions:
-  id-token: write  # OIDC token取得に必要
-  contents: read   # リポジトリコンテンツ読み取りに必要
+  id-token: write  # For obtaining OIDC token
+  contents: read   # For reading repository contents
 
 jobs:
   deploy:
