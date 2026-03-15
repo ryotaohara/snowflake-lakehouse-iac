@@ -43,7 +43,7 @@ jobs:
             core.setFailed(`ID token retrieval failed: ${error.message}`);
           }
 
-    0. Test Snowflake connection
+    # 0. Test Snowflake connection
     - name: Set up Snowflake CLI
       uses: snowflakedb/snowflake-cli-action@v2.0
       with:
