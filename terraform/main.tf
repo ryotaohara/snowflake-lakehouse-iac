@@ -12,6 +12,7 @@ provider "snowflake" {
   organization_name = var.SNOWFLAKE_ORGANIZATION
   account_name      = var.SNOWFLAKE_ACCOUNT
   user              = var.SNOWFLAKE_USER
+  warehouse         = var.SNOWFLAKE_WAREHOUSE
 }
 
 # Test database for Terraform
