@@ -33,7 +33,7 @@ jobs:
         script: |
           try {
             const idToken = await core.getIDToken(process.env.AUDIENCE);
-            core.exportVariable('SNOWFLAKE_OIDC_TOKEN', idToken);
+            core.exportVariable('SNOWFLAKE_TOKEN', idToken);
             console.log('ID token obtained');
           } catch (error) {
             console.error(error);
@@ -73,8 +73,6 @@ jobs:
     - name: Terraform Apply
       run: terraform apply -var="ENV_NAME=${{ env.ENV_NAME }}" -auto-approve
       working-directory: ./terraform
-      env:
-        SNOWFLAKE_TOKEN: ${{ steps.id-token.outputs.id-token }}
 
     # 5. Setup Python for dbt
     - name: Set up Python
