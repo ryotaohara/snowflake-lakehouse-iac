@@ -46,7 +46,7 @@ jobs:
     
     # 4. Terraform Apply using OIDC
     - name: Terraform Apply
-      run: terraform apply -var="project_env=${{ env.ENV_NAME }}" -auto-approve
+      run: terraform apply -var="ENV_NAME=${{ env.ENV_NAME }}" -auto-approve
       working-directory: ./terraform
       env:
         SNOWFLAKE_AUTHENTICATOR: 'OIDC'
