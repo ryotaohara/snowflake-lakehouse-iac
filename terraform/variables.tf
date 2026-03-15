@@ -21,6 +21,12 @@ variable "SNOWFLAKE_USER" {
   sensitive   = true
 }
 
+variable "SNOWFLAKE_ROLE" {
+  description = "Snowflake role for authentication"
+  type        = string
+  sensitive   = true
+}
+
 variable "SNOWFLAKE_WAREHOUSE" {
   description = "Snowflake warehouse for authentication"
   type        = string
