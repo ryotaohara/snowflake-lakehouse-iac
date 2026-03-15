@@ -1,0 +1,71 @@
+name: Snowflake Deployment with Workload Identity
+
+on:
+  push:
+    branches: [ main, test, dev ]
+
+permissions:
+  id-token: write  # OIDC token取得に必要
+  contents: read   # リポジトリコンテンツ読み取りに必要
+
+jobs:
+  deploy:
+    name: "Deploy to ${{ env.ENV_NAME }}"
+    runs-on: ubuntu-latest
+
+    env:
+      SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+      SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
+      SNOWFLAKE_AUTHENTICATOR: WORKLOAD_IDENTITY
+      SNOWFLAKE_WORKLOAD_IDENTITY_PROVIDER: OIDC
+      SNOWFLAKE_TOKEN: ${{ steps.get-token.outputs.id_token }}
+      SF_ENABLE_EXPERIMENTAL_AUTHENTICATION: true
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # 1. Map branch name to environment variable
+    - name: Set Environment Mapping
+      run: |
+        if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+          echo "ENV_NAME=PROD" >> $GITHUB_ENV
+        elif [[ "${{ github.ref }}" == "refs/heads/test" ]]; then
+          echo "ENV_NAME=TEST" >> $GITHUB_ENV
+        else
+          echo "ENV_NAME=DEV" >> $GITHUB_ENV
+        fi
+
+    # 2. Setup Terraform
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+
+    # 3. Terraform Init with Dynamic State Key
+    - name: Terraform Init
+      run: |
+        terraform init \
+          -backend-config="key=snowflake-state-${{ env.ENV_NAME }}.tfstate"
+      working-directory: ./terraform
+    
+    # 4. Terraform Apply using OIDC
+    - name: Terraform Apply
+      run: terraform apply -var="project_env=${{ env.ENV_NAME }}" -auto-approve
+      working-directory: ./terraform
+      env:
+        SNOWFLAKE_AUTHENTICATOR: 'OIDC'
+
+    # 5. Setup Python for dbt
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.9'
+
+    - name: Install dependencies
+      run: |
+        pip install dbt-snowflake
+
+    # 6. Run dbt transformations
+    - name: dbt Run
+      run: dbt run --target ${{ env.ENV_NAME }}
+      env:
+        SNOWFLAKE_AUTHENTICATOR: 'OIDC'
