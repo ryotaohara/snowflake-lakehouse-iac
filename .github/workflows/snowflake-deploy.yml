@@ -44,13 +44,13 @@ jobs:
           }
 
     # 0. Test Snowflake connection
-    - name: Set up Snowflake CLI
-      uses: snowflakedb/snowflake-cli-action@v2.0
-      with:
-        use-oidc: true
-        cli-version: "3.14.0"
-    - name: test connection
-      run: snow connection test --temporary-connection
+    # - name: Set up Snowflake CLI
+    #   uses: snowflakedb/snowflake-cli-action@v2.0
+    #   with:
+    #     use-oidc: true
+    #     cli-version: "3.14.0"
+    # - name: test connection
+    #   run: snow connection test --temporary-connection
 
     # 1. Map branch name to environment variable
     - name: Set Environment Mapping
