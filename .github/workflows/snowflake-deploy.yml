@@ -20,6 +20,7 @@ jobs:
       SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
       SNOWFLAKE_AUTHENTICATOR: WORKLOAD_IDENTITY
       SNOWFLAKE_WORKLOAD_IDENTITY_PROVIDER: OIDC
+      SNOWFLAKE_AUDIENCE: "https://github.com/${{ github.repository_owner }}"
       SF_ENABLE_EXPERIMENTAL_AUTHENTICATION: true
     
     steps:
@@ -79,6 +80,7 @@ jobs:
         TF_VAR_SNOWFLAKE_TOKEN: ${{ env.SNOWFLAKE_TOKEN }}
         TF_VAR_SNOWFLAKE_AUTHENTICATOR: ${{ env.SNOWFLAKE_AUTHENTICATOR }}
         TF_VAR_SNOWFLAKE_WORKLOAD_IDENTITY_PROVIDER: ${{ env.SNOWFLAKE_WORKLOAD_IDENTITY_PROVIDER }}
+        TF_VAR_SNOWFLAKE_AUDIENCE: ${{ env.SNOWFLAKE_AUDIENCE }}
         TF_VAR_ENV_NAME: ${{ env.ENV_NAME }}
       run: terraform apply -auto-approve
       working-directory: ./terraform
