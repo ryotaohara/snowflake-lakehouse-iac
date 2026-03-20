@@ -20,7 +20,6 @@ jobs:
       SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
       SNOWFLAKE_AUTHENTICATOR: WORKLOAD_IDENTITY
       SNOWFLAKE_WORKLOAD_IDENTITY_PROVIDER: OIDC
-      SNOWFLAKE_AUDIENCE: "https://github.com/${{ github.repository_owner }}"
       SF_ENABLE_EXPERIMENTAL_AUTHENTICATION: true
     
     steps:
@@ -40,6 +39,9 @@ jobs:
             console.error(error);
             core.setFailed(`ID token retrieval failed: ${error.message}`);
           }
+
+    - name: Check OIDC Token
+      run: echo $env.SNOWFLAKE_TOKEN | cut -d'.' -f2 | base64 -d | jq .
 
     # 0. Test Snowflake connection
     - name: Set up Snowflake CLI
