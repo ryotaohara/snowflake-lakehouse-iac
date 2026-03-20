@@ -49,7 +49,7 @@ jobs:
       uses: snowflakedb/snowflake-cli-action@v2.0
       with:
         use-oidc: true
-        cli-version: "3.14.0"
+        cli-version: "3.10.0"
     - name: test connection
       run: snow connection test --temporary-connection
 
