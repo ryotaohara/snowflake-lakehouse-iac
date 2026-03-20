@@ -2,6 +2,7 @@ terraform {
   required_providers {
     snowflake = {
       source  = "snowflakedb/snowflake"
+      version = "2.11.0"
     }
   }
 }
@@ -23,15 +24,4 @@ resource "snowflake_database" "test" {
   name    = "DB_TEST_TERRAFORM"
   comment = "Test database created by Terraform"
 }
-
-
-
-
-
-
-
-
-
-
-
 
