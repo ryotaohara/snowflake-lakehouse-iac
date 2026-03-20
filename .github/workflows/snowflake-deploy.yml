@@ -36,7 +36,8 @@ jobs:
       with:
         script: |
           try {
-            const idToken = await core.getIDToken(process.env.AUDIENCE);
+            const idToken = await core.getIDToken(env.SNOWFLAKE_AUDIENCE);
+            #const idToken = await core.getIDToken(process.env.AUDIENCE);
             core.exportVariable('SNOWFLAKE_TOKEN', idToken);
             console.log('ID token obtained');
           } catch (error) {
