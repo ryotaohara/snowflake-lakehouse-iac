@@ -7,7 +7,7 @@ terraform {
   }
 }
 
-# Credentials from the environment (e.g. GitHub Secrets via workflow env) 
+# Credentials from the workflow yml file 
 provider "snowflake" {
   organization_name           = var.SNOWFLAKE_ORGANIZATION
   account_name                = var.SNOWFLAKE_ACCOUNT
