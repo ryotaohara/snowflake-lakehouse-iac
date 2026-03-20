@@ -7,9 +7,8 @@ terraform {
   }
 }
 
-# Credentials come from the environment (e.g. GitHub Secrets via workflow env)
+# Credentials come from the environment (e.g. GitHub Secrets via workflow env) # organization_name           = var.SNOWFLAKE_ORGANIZATION
 provider "snowflake" {
-  organization_name           = var.SNOWFLAKE_ORGANIZATION
   account_name                = var.SNOWFLAKE_ACCOUNT
   user                        = var.SNOWFLAKE_USER
   role                        = var.SNOWFLAKE_ROLE
