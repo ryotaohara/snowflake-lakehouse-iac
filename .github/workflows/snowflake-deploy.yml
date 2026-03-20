@@ -41,7 +41,7 @@ jobs:
           }
 
     - name: Check OIDC Token
-      run: echo $env.SNOWFLAKE_TOKEN | cut -d'.' -f2 | base64 -d | jq .
+      run: echo $SNOWFLAKE_TOKEN | cut -d'.' -f2 | base64 -d | jq .
 
     # 0. Test Snowflake connection
     - name: Set up Snowflake CLI
