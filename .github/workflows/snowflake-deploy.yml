@@ -46,7 +46,7 @@ jobs:
       uses: snowflakedb/snowflake-cli-action@v2.0
       with:
         use-oidc: true
-        cli-version: "3.14.0"
+        cli-version: "3.10.0"
     - name: test connection
       run: snow connection test --temporary-connection
 
@@ -80,7 +80,6 @@ jobs:
         TF_VAR_SNOWFLAKE_TOKEN: ${{ env.SNOWFLAKE_TOKEN }}
         TF_VAR_SNOWFLAKE_AUTHENTICATOR: ${{ env.SNOWFLAKE_AUTHENTICATOR }}
         TF_VAR_SNOWFLAKE_WORKLOAD_IDENTITY_PROVIDER: ${{ env.SNOWFLAKE_WORKLOAD_IDENTITY_PROVIDER }}
-        TF_VAR_SNOWFLAKE_AUDIENCE: ${{ env.SNOWFLAKE_AUDIENCE }}
         TF_VAR_ENV_NAME: ${{ env.ENV_NAME }}
       run: terraform apply -auto-approve
       working-directory: ./terraform
