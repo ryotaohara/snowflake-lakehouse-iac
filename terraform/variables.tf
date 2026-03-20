@@ -45,9 +45,3 @@ variable "SNOWFLAKE_WORKLOAD_IDENTITY_PROVIDER" {
   type        = string
   sensitive   = true
 }
-
-variable "SNOWFLAKE_AUDIENCE" {
-  description = "Snowflake audience for OIDC"
-  type        = string
-  sensitive   = true
-}
