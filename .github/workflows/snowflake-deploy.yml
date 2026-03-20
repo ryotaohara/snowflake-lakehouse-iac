@@ -31,8 +31,6 @@ jobs:
     - name: Get OIDC Token
       id: id-token
       uses: actions/github-script@v7
-      env:
-        AUDIENCE: https://github.com/ryotaohara
       with:
         script: |
           try {
@@ -49,7 +47,7 @@ jobs:
       uses: snowflakedb/snowflake-cli-action@v2.0
       with:
         use-oidc: true
-        cli-version: "3.10.0"
+        cli-version: "3.12.0"
     - name: test connection
       run: snow connection test --temporary-connection
 
