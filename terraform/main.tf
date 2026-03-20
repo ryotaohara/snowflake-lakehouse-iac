@@ -2,13 +2,14 @@ terraform {
   required_providers {
     snowflake = {
       source  = "snowflakedb/snowflake"
-      version = "2.10.0"
+      version = "2.14.0"
     }
   }
 }
 
-# Credentials come from the environment (e.g. GitHub Secrets via workflow env) # organization_name           = var.SNOWFLAKE_ORGANIZATION
+# Credentials come from the environment (e.g. GitHub Secrets via workflow env) 
 provider "snowflake" {
+  organization_name           = var.SNOWFLAKE_ORGANIZATION
   account_name                = var.SNOWFLAKE_ACCOUNT
   user                        = var.SNOWFLAKE_USER
   role                        = var.SNOWFLAKE_ROLE
