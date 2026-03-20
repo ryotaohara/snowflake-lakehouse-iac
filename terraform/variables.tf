@@ -28,20 +28,20 @@ variable "SNOWFLAKE_ROLE" {
   sensitive   = true
 }
 
-variable "SNOWFLAKE_AUTHENTICATOR" {
-  description = "Snowflake authenactor method"
+variable "SNOWFLAKE_TOKEN" {
+  description = "Snowflake OIDC token"
   type        = string
   sensitive   = true
 }
 
-variable "SNOWFLAKE_TOKEN" {
-  description = "Snowflake authenactor method"
+variable "SNOWFLAKE_AUTHENTICATOR" {
+  description = "Snowflake authenticator method"
   type        = string
   sensitive   = true
 }
 
 variable "SNOWFLAKE_WORKLOAD_IDENTITY_PROVIDER" {
-  description = "Snowflake authenactor method"
+  description = "Snowflake workload identity provider"
   type        = string
   sensitive   = true
 }

@@ -13,8 +13,8 @@ provider "snowflake" {
   account_name                = var.SNOWFLAKE_ACCOUNT
   user                        = var.SNOWFLAKE_USER
   role                        = var.SNOWFLAKE_ROLE
-  authenticator               = var.SNOWFLAKE_AUTHENTICATOR
   token                       = var.SNOWFLAKE_TOKEN
+  authenticator               = var.SNOWFLAKE_AUTHENTICATOR
   workload_identity_provider  = var.SNOWFLAKE_WORKLOAD_IDENTITY_PROVIDER
 }
 
