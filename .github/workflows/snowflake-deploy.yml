@@ -36,7 +36,7 @@ jobs:
       with:
         script: |
           try {
-            const idToken = await core.getIDToken(process.env.AUDIENCE);
+            const idToken = await core.getIDToken('https://github.com/${{ github.repository_owner }}');
             core.exportVariable('SNOWFLAKE_TOKEN', idToken);
             console.log('ID token obtained');
           } catch (error) {
