@@ -36,7 +36,7 @@ jobs:
           try {
             const idToken = await core.getIDToken('https://github.com/${{ github.repository_owner }}');
             core.exportVariable('SNOWFLAKE_TOKEN', idToken);
-            console.log('${{ env.SNOWFLAKE_TOKEN }}')
+            console.log(`ID token: ${{ env.SNOWFLAKE_TOKEN }}`)
             console.log('ID token obtained');
           } catch (error) {
             console.error(error);
