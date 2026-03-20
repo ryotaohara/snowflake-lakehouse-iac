@@ -72,6 +72,12 @@ jobs:
       run: terraform init
       working-directory: ./terraform
     
+    - name: Terraform Validate
+      run: terraform validate
+
+    - name: Terraform Plan
+      run: terraform plan
+
     # 4. Terraform Apply — pass GitHub Secrets into Terraform via TF_VAR_
     - name: Terraform Apply
       env:
